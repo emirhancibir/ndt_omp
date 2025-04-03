@@ -58,7 +58,7 @@ int main(int argc, char** argv) {
   pcl::PointCloud<pcl::PointXYZ>::Ptr downsampled(new pcl::PointCloud<pcl::PointXYZ>());
 
   pcl::VoxelGrid<pcl::PointXYZ> voxelgrid;
-  voxelgrid.setLeafSize(0.1f, 0.1f, 0.1f);
+  voxelgrid.setLeafSize(0.3, 0.3, 0.3);
 
   voxelgrid.setInputCloud(target_cloud);
   voxelgrid.filter(*downsampled);
@@ -66,7 +66,7 @@ int main(int argc, char** argv) {
 
   voxelgrid.setInputCloud(source_cloud);
   voxelgrid.filter(*downsampled);
-  source_cloud = downsampled;
+  // source_cloud = downsampled;
 
   ros::Time::init();
 

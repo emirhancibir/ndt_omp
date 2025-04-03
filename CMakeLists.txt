@@ -34,6 +34,9 @@ if($ENV{ROS_VERSION} EQUAL 1)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   pcl_ros
+  tf
+  tf_conversions
+  sensor_msgs
 )
 
 ###################################
@@ -65,6 +68,18 @@ add_dependencies(align
   ndt_omp
 )
 target_link_libraries(align
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+  ndt_omp
+)
+
+add_executable(localize
+  apps/localize.cpp
+)
+add_dependencies(localize
+  ndt_omp
+)
+target_link_libraries(localize
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
   ndt_omp
